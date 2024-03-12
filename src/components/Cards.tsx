@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList, View, Text, StyleSheet } from 'react-native';
-import { Card } from './Card';
+import { FlatList, View, ScrollView, StyleSheet } from 'react-native';
+import Card from './Card';
 import { categories } from '../common/categories';
 import { shadow } from '../common/styles';
 
@@ -10,22 +10,17 @@ const Cards = () => {
     categories.slice(index * CHUNK, index * CHUNK + CHUNK)
   );
   return (
-    <View style={styles.container}>
-      {chunkedCategories.map((row, idx) => (
-        <View key={idx} style={styles.row}>
-          {row.map((item, index) => (
-            <Card key={index} title={item.title} />
-          ))}
-        </View>
-      ))}
-
-      {/* <FlatList
-        // horizontal
-        data={categories}
-        keyExtractor={(data) => data.title}
-        renderItem={({ item, index }) => <Card key={index} title={item.title} />}
-      /> */}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        {chunkedCategories.map((row, idx) => (
+          <View key={idx} style={styles.row}>
+            {row.map((item, index) => (
+              <Card key={index} title={item.title} image={item.image} screen={item.screen.name} />
+            ))}
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -37,6 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 150,
     ...shadow,
   },
   row: {
