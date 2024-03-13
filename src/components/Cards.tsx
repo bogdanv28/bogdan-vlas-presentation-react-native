@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import Card from './Card';
 import { categories } from '../common/categories';
 import { shadow } from '../common/styles';
