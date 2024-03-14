@@ -1,18 +1,9 @@
-import { ImageSourcePropType } from 'react-native';
 import WorkExperience from '../screens/WorkExperience';
 import Projects from '../screens/Projects';
 import Skills from '../screens/Skills';
 import Education from '../screens/Education';
 import AboutMe from '../screens/AboutMe';
-
-type Category = {
-  title: string;
-  image: ImageSourcePropType;
-  screen: {
-    name: string;
-    source: () => React.JSX.Element;
-  };
-};
+import { Category } from '../components/Cards';
 
 export const categories: Category[] = [
   {

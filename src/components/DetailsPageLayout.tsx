@@ -12,17 +12,17 @@ const DetailsPageLayout: FC<{ title: string; children?: ReactNode }> = ({ title,
         colors={['rgba(2,115,166,1)', 'rgba(73,186,238,1)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        style={[styles.container, { width: getWindowDimmensions().width || 200 }]}
+        style={[styles.head, { width: getWindowDimmensions().width || 200 }]}
       >
         <Text style={styles.title}>{title}</Text>
       </LinearGradient>
-      <ScrollView>{children}</ScrollView>
+      <ScrollView marginBottom={10}>{children}</ScrollView>
     </NativeBaseProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  head: {
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',

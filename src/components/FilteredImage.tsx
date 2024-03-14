@@ -14,7 +14,6 @@ const FilteredImage: React.FC<FilteredImageProps> = ({
   children,
   style,
 }) => {
-  console.log('style', style);
   return (
     <ImageBackground blurRadius={2} source={imageSource} style={[styles.imageBackground, style ? { ...style } : {}]}>
       <View style={[styles.filter, { backgroundColor: filterColor }]}>{children}</View>

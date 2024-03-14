@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from './src/screens/Home';
 import { createAppContainer } from 'react-navigation';
-import { categories } from './src/common/categories';
+import { categories } from './src/data/categories';
 
 const screens: Record<string, () => React.JSX.Element> = {};
 categories.forEach((category) => {
