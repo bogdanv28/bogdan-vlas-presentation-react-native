@@ -1,18 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions, SafeAreaView, ScaledSize, StyleSheet, Text, View } from 'react-native';
-import Header from './src/components/Header';
-import { createContext } from 'react';
-import Contact from './src/components/Contact';
-import Cards from './src/components/Cards';
-import { Card } from './src/components/Card';
+import { createStackNavigator } from 'react-navigation-stack';
+import Home from './src/screens/Home';
+import { createAppContainer } from 'react-navigation';
+import { categories } from './src/data/categories';
 
-export default function App() {
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar style='auto' />
-      <Header />
-      <Cards />
-      <Contact />
-    </SafeAreaView>
-  );
-}
+const screens: Record<string, () => React.JSX.Element> = {};
+categories.forEach((category) => {
+  screens[category.screen.name] = category.screen.source;
+});
+
+const navigator = createStackNavigator(
+  {
+    Home: Home,
+    ...screens,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+export default createAppContainer(navigator);

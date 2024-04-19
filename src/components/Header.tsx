@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 10,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 28,
     color: 'white',
   },
   subtitle: {
@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    fontSize: 16,
+    fontSize: 15,
     color: 'white',
   },
   image: {
     marginTop: 10,
-    width: 150,
-    height: 150,
+    width: 110,
+    height: 110,
     borderRadius: 100,
   },
 });

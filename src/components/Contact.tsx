@@ -25,7 +25,9 @@ const ContactItem: FC<{ title: string; data: string }> = ({ title, data }) => {
   return (
     <View style={styles.contactItemContainer}>
       <Text style={[styles.body, { fontWeight: 'bold' }]}>{title}</Text>
-      <Text style={styles.body}>{data}</Text>
+      <Text style={styles.body} selectable>
+        {data}
+      </Text>
     </View>
   );
 };

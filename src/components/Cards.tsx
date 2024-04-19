@@ -1,31 +1,33 @@
-import React from 'react';
-import { FlatList, View, Text, StyleSheet } from 'react-native';
-import { Card } from './Card';
-import { categories } from '../common/categories';
+import React, { FC } from 'react';
+import { View, ScrollView, StyleSheet, ImageSourcePropType } from 'react-native';
 import { shadow } from '../common/styles';
+import CardNavigation from './CardNavigation';
+import { chunkArray } from '../common/chunkArray';
 
-const Cards = () => {
+export type Category = {
+  title: string;
+  image: ImageSourcePropType;
+  screen: {
+    name: string;
+    source: () => React.JSX.Element;
+  };
+};
+
+const Cards: FC<{ categories: Category[] }> = ({ categories }) => {
   const CHUNK = 2;
-  const chunkedCategories = Array.from({ length: Math.ceil(categories.length / CHUNK) }, (_, index) =>
-    categories.slice(index * CHUNK, index * CHUNK + CHUNK)
-  );
+  const chunkedCategories = chunkArray(categories, CHUNK);
   return (
-    <View style={styles.container}>
-      {chunkedCategories.map((row, idx) => (
-        <View key={idx} style={styles.row}>
-          {row.map((item, index) => (
-            <Card key={index} title={item.title} />
-          ))}
-        </View>
-      ))}
-
-      {/* <FlatList
-        // horizontal
-        data={categories}
-        keyExtractor={(data) => data.title}
-        renderItem={({ item, index }) => <Card key={index} title={item.title} />}
-      /> */}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        {chunkedCategories.map((row, idx) => (
+          <View key={idx} style={styles.row}>
+            {row.map((item, index) => (
+              <CardNavigation key={index} title={item.title} image={item.image} screen={item.screen.name} />
+            ))}
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 150,
     ...shadow,
   },
   row: {
